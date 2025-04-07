@@ -1,0 +1,19 @@
+{
+    "name": "Camellia.Logic",
+    "rootNamespace": "",
+    "references": [
+        "GameFramework",
+        "UnityGameFramework.Runtime",
+        "Unity.TextMeshPro",
+        "Camellia.Runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

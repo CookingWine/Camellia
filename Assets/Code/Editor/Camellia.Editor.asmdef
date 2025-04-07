@@ -1,0 +1,24 @@
+{
+    "name": "Camellia.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:d10b4ccbb39ea0541b5566da4d477f8e",
+        "GUID:a2d8a19598eca814496b089021d08d60",
+        "GUID:363c5eb08ff8e6a439b85e37b8c20d96",
+        "GUID:2373f786d14518f44b0f475db77ba4de",
+        "GUID:13ba8ce62aa80c74598530029cb2d649",
+        "GUID:2c3d129936c7eb847ae496923267a69f",
+        "GUID:5e6ab0679daf9fc4585d93bd69c0473a"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

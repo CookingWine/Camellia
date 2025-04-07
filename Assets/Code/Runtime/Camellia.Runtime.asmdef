@@ -1,0 +1,19 @@
+{
+    "name": "Camellia.Runtime",
+    "rootNamespace": "",
+    "references": [
+        "GameFramework",
+        "UnityGameFramework.Runtime",
+        "Unity.TextMeshPro",
+        "HybridCLR.Runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
