@@ -21,8 +21,7 @@ namespace Camellia.Runtime
 
             InitLanguageSettings( );
             //TODO:后续这里其实应该等待视频播放完成，如果视频播放完成但是还没有加载完毕那就停留在最后一帧视频
-
-            ChangeState<ProcedureCheckVersion>(procedureOwner);
+            SwitchGameProcedure(procedureOwner);
         }
 
         /// <summary>
@@ -76,5 +75,31 @@ namespace Camellia.Runtime
             });
         }
 
+
+        /// <summary>
+        /// 切换游戏流程
+        /// </summary>
+        /// <param name="procedureOwner"></param>
+        void SwitchGameProcedure(ProcedureOwner procedureOwner)
+        {
+            if(CamelliaApp.Base.EditorResourceMode)
+            {
+                // 编辑器模式
+                Log.Info("Editor resource mode detected.");
+                ChangeState<ProcedurePreloadDll>(procedureOwner);
+            }
+            else if(CamelliaApp.Resource.ResourceMode == GameFramework.Resource.ResourceMode.Package)
+            {
+                // 单机模式
+                Log.Info("Package resource mode detected.");
+                ChangeState<ProcedureInitResources>(procedureOwner);
+            }
+            else
+            {
+                // 可更新模式
+                Log.Info("Updatable resource mode detected.");
+                ChangeState<ProcedureCheckVersion>(procedureOwner);
+            }
+        }
     }
 }

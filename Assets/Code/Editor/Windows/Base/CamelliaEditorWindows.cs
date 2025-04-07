@@ -15,12 +15,12 @@ namespace Camellia.Editor
         /// <summary>
         /// 默认最小宽
         /// </summary>
-        const float DeflautMinWidth = 1200f;
+        const float DeflautMinWidth = 1980;
 
         /// <summary>
         /// 默认最小高
         /// </summary>
-        const float DefalutMinHeight = 700f;
+        const float DefalutMinHeight = 1080f;
 
         //编辑窗口
         static CamelliaEditorWindows s_EditorWindows = null;
@@ -65,7 +65,7 @@ namespace Camellia.Editor
 
             s_EditorWindows = GetWindow<CamelliaEditorWindows>(true , "游戏配置" , true);
             s_EditorWindows.position = new Rect(windowX , windowY , DeflautMinWidth , DefalutMinHeight);
-            s_EditorWindows.minSize = new Vector2(DeflautMinWidth , DefalutMinHeight);
+            s_EditorWindows.maxSize = s_EditorWindows.minSize = new Vector2(DeflautMinWidth , DefalutMinHeight);
             //加载配置
             LoadWindowConfigs( );
         }
@@ -179,16 +179,16 @@ namespace Camellia.Editor
             GUILayout.BeginHorizontal( );
             {
                 //左侧区域
-                GUILayout.BeginHorizontal(GUILayout.Width(position.width * 0.25f));
+                GUILayout.BeginHorizontal(GUILayout.Width(300));
                 {
-                    m_SelectionItemScrollPosition = GUILayout.BeginScrollView(m_SelectionItemScrollPosition , GUILayout.Width(position.width * 0.25f) , GUILayout.Height(position.height));
+                    m_SelectionItemScrollPosition = GUILayout.BeginScrollView(m_SelectionItemScrollPosition , GUILayout.Width(300) , GUILayout.Height(position.height));
                     {
                         foreach(var item in s_CacheCamelliaWindow)
                         {
                             // 保存当前的 GUI 颜色
                             Color originalColor = GUI.color;
                             GUI.color = item == m_CurrentDrawItem ? GUI.color = Color.green : Color.white;
-                            if(GUILayout.Button(item.WindowsName , GUILayout.Height(50f)))
+                            if(GUILayout.Button(item.WindowsName , GUILayout.Width(280) , GUILayout.Height(50f)))
                             {
                                 m_CurrentDrawItem = item;
                             }
@@ -202,13 +202,13 @@ namespace Camellia.Editor
                 // 绘制分隔线
                 DrawVerticalLine(Color.gray , 2f);
 
-                GUILayout.BeginVertical(GUILayout.Width(position.width * 0.75f));
+                GUILayout.BeginVertical(GUILayout.Width(1678.0f));
                 {
                     if(m_CurrentDrawItem != null)
                     {
-                        m_SelectionItemViewScrollPosition = GUILayout.BeginScrollView(m_SelectionItemViewScrollPosition , GUILayout.Width(position.width * 0.73f) , GUILayout.Height(position.height * 0.85f));
+                        m_SelectionItemViewScrollPosition = GUILayout.BeginScrollView(m_SelectionItemViewScrollPosition , GUILayout.Width(1678.0f) , GUILayout.Height(position.height * 0.85f));
                         {
-                            m_CurrentDrawItem.DrawWindowContent(position.width * 0.73f , position.height * 0.85f);
+                            m_CurrentDrawItem.DrawWindowContent(1678.0f , position.height * 0.85f);
                         }
                         GUILayout.EndScrollView( );
                     }

@@ -1,5 +1,6 @@
 using HybridCLR;
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 namespace Camellia.Runtime
@@ -29,9 +30,15 @@ namespace Camellia.Runtime
         /// 进入热更入口
         /// </summary>
         /// <param name="complate"></param>
+#if UNITY_EDITOR
         internal void HotfixEntry(Action complate)
+#else
+
+#endif
         {
             m_SuccessComplate = complate;
+
+            StartCoroutine(LoadHotfixEntry( ));
         }
 
         /// <summary>
@@ -95,6 +102,16 @@ namespace Camellia.Runtime
         private LoadImageErrorCode LoadMetadataForAOT(byte[] dllBytes)
         {
             return RuntimeApi.LoadMetadataForAOTAssembly(dllBytes , m_HomologousImageMode);
+        }
+
+        /// <summary>
+        /// 加载热更
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator LoadHotfixEntry( )
+        {
+            yield return new WaitForEndOfFrame( );
+
         }
 
     }

@@ -8,16 +8,19 @@ namespace Camellia.Runtime
     /// </summary>
     internal class ProcedureInitResources:ProcedureBase
     {
+        ProcedureOwner m_CurrentProcedureOwner;
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
             Log.Info("Enter init resouces procedure!");
+            m_CurrentProcedureOwner = procedureOwner;
             CamelliaApp.Resource.InitResources(OnInitResourceComplete);
         }
 
         protected override void OnLeave(ProcedureOwner procedureOwner , bool isShutdown)
         {
             base.OnLeave(procedureOwner , isShutdown);
+            m_CurrentProcedureOwner = null;
         }
 
         /// <summary>
@@ -25,7 +28,8 @@ namespace Camellia.Runtime
         /// </summary>
         private void OnInitResourceComplete( )
         {
-
+            Log.Info("Single machine mode initialization resource completed!");
+            ChangeState<ProcedurePreloadDll>(m_CurrentProcedureOwner);
         }
     }
 }
