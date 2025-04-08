@@ -1,6 +1,10 @@
+using GameFramework;
+using GameFramework.Resource;
 using HybridCLR;
 using System;
 using System.Collections;
+using System.Reflection;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 namespace Camellia.Runtime
@@ -16,6 +20,9 @@ namespace Camellia.Runtime
 
         private Action m_ShutdownCallback = null;
 
+        private LoadAssetCallbacks m_LoadAssetCallbacks;
+
+        private TaskCompletionSource<object> s_LoadAssetTask;
 
         /// <summary>
         /// Hybridclr元数据模式
@@ -33,11 +40,13 @@ namespace Camellia.Runtime
 #if UNITY_EDITOR
         internal void HotfixEntry(Action complate)
 #else
-
+        public async void HotfixEntry(Action complate)
 #endif
         {
             m_SuccessComplate = complate;
-
+#if UNTIY_EDITOR
+            
+#endif
             StartCoroutine(LoadHotfixEntry( ));
         }
 
@@ -57,7 +66,7 @@ namespace Camellia.Runtime
         }
         private void Start( )
         {
-
+            m_LoadAssetCallbacks = new LoadAssetCallbacks(OnLoadAssetSuccess , OnLoadAssetFailure);
         }
 
         private void Update( )
@@ -84,7 +93,7 @@ namespace Camellia.Runtime
 
         }
 
-        private void OnDestroy( )
+        private void OnApplicationQuit( )
         {
             if(m_ShutdownCallback == null)
             {
@@ -111,8 +120,44 @@ namespace Camellia.Runtime
         private IEnumerator LoadHotfixEntry( )
         {
             yield return new WaitForEndOfFrame( );
-
+            //加载热更程序入口类
+            Type logic = Utility.Assembly.GetType(GlobalVariable.AppHotfixEntryClass) ?? throw new GameFrameworkException(Utility.Text.Format("Loading failed, not found {0}." , GlobalVariable.AppHotfixEntryClass));
+            MethodInfo start = logic.GetMethod(GlobalVariable.AppHotfixStartFuntion , BindingFlags.Public | BindingFlags.Static);
+            MethodInfo update = logic.GetMethod(GlobalVariable.AppHotfixUpdateFuntion , BindingFlags.Public | BindingFlags.Static);
+            MethodInfo shutdown = logic.GetMethod(GlobalVariable.AppHotfixShutdownFuntion , BindingFlags.Public | BindingFlags.Static);
+            yield return new WaitForEndOfFrame( );
+            Log.Info("Hotfix main entry loaded, wait to enter the game!");
+            m_SuccessComplate?.Invoke( );
+            start?.Invoke(null , null);
+            m_UpdateCallback = (Action<float , float>)Delegate.CreateDelegate(typeof(Action<float , float>) , null , update);
+            m_ShutdownCallback = (Action)Delegate.CreateDelegate(typeof(Action) , null , shutdown);
         }
+
+        /// <summary>
+        /// 加载资源成功回调
+        /// </summary>
+        /// <param name="assetName">要加载的资源名称。</param>
+        /// <param name="asset">已加载的资源。</param>
+        /// <param name="duration">加载持续时间。</param>
+        /// <param name="userData">用户自定义数据。</param>
+        private void OnLoadAssetSuccess(string assetName , object asset , float duration , object userData)
+        {
+            s_LoadAssetTask.SetResult(asset);
+            Log.Info("Successfully loaded {0} resource!" , assetName);
+        }
+        /// <summary>
+        /// 加载资源失败回调
+        /// </summary>
+        /// <param name="assetName">要加载的资源名称。</param>
+        /// <param name="status">加载资源状态。</param>
+        /// <param name="errorMessage">错误信息。</param>
+        /// <param name="userData">用户自定义数据。</param>
+        private void OnLoadAssetFailure(string assetName , LoadResourceStatus status , string errorMessage , object userData)
+        {
+            s_LoadAssetTask.SetException(new GameFrameworkException(errorMessage));
+            Log.Fatal("Loading {0} resource failed!" , assetName);
+        }
+
 
     }
 }

@@ -13,7 +13,7 @@ namespace Camellia.Runtime
             switch(level)
             {
                 case GameFrameworkLogLevel.Debug:
-                    Debug.Log(Utility.Text.Format("<color=#00F5FF><CamelliaApp>--[{0}]--{1}</color>" , Time.deltaTime , message.ToString( )));
+                    Debug.Log(Utility.Text.Format("<color=#00F5FF><CamelliaApp>--[{0}]--{1}</color>" , Time.time , message.ToString( )));
                     break;
                 case GameFrameworkLogLevel.Info:
                     Debug.Log(Utility.Text.Format("<color=#FFDAB9><CamelliaApp>--[{0}]--{1}</color>" , Time.time , message.ToString( )));

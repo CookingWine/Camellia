@@ -17,7 +17,7 @@ namespace Camellia.Runtime
         /// <summary>
         /// 3d相机
         /// </summary>
-        public Camera Camera3D { get; private set; }
+        public Camera Camera2D { get; private set; }
 
         /// <summary>
         /// 游戏主界面非热更【当进入热更后把改ui给删除掉】
@@ -45,11 +45,11 @@ namespace Camellia.Runtime
         {
             base.Awake( );
             UICamera = GameObject.Find("UICamera").GetComponent<Camera>( );
-            Camera3D = GameObject.Find("3DCamera").GetComponent<Camera>( );
+            Camera2D = GameObject.Find("2DCamera").GetComponent<Camera>( );
         }
 
         /// <summary>
-        /// 异步加载Resource内的资源【只要非热更的资源才可以使用这个】
+        /// 异步加载Resource内的资源【只非热更的资源才可以使用这个】
         /// </summary>
         /// <param name="path">资源路径</param>
         /// <param name="action">加载完成后的回调</param>

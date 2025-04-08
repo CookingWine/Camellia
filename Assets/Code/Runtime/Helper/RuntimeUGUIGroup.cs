@@ -10,9 +10,9 @@ namespace Camellia.Runtime
     public class RuntimeUGUIGroup:UIGroupHelperBase
     {
         /// <summary>
-        /// 匹配宽度或高度【保持宽度匹配】
+        /// 匹配宽度或高度
         /// </summary>
-        public const float MatchWidthOrHeight = 0f;
+        public const float MatchWidthOrHeight = 0.5f;
         /// <summary>
         /// 深度系数
         /// </summary>
@@ -56,8 +56,9 @@ namespace Camellia.Runtime
         private void InitCanvas( )
         {
             m_CachedCanvas = gameObject.GetOrAddComponent<Canvas>( );
-            m_CachedCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            m_CachedCanvas.renderMode = RenderMode.ScreenSpaceCamera;
             m_CachedCanvas.overrideSorting = true;
+            m_CachedCanvas.worldCamera = CamelliaApp.BuiltinData.UICamera;
             m_CachedCanvas.sortingOrder = DepthFactor * m_Depth;
             m_CachedCanvas.vertexColorAlwaysGammaSpace = true;
             CanvasScaler csc = gameObject.GetOrAddComponent<CanvasScaler>( );

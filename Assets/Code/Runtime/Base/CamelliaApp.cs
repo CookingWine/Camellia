@@ -205,6 +205,7 @@ namespace Camellia.Runtime
         private void Start( )
         {
             InitBuiltinComponents( );
+            DontDestroyOnLoad(this);
         }
         /// <summary>
         /// 初始化内置组件
