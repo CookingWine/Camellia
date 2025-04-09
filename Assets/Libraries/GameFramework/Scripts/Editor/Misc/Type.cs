@@ -37,7 +37,7 @@ namespace UnityGameFramework.Editor
 #endif
             "Assembly-CSharp-Editor",
 
-            "Camellia.Editor",
+            "Camellia.CamelliaEditor",
         };
 
         /// <summary>

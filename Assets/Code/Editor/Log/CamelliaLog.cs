@@ -1,7 +1,7 @@
 using GameFramework;
 using UnityEngine;
 
-namespace Camellia.Editor
+namespace Camellia.CamelliaEditor
 {
     /// <summary>
     /// 编辑器log

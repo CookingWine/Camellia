@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityGameFramework.Editor;
 using UnityGameFramework.Editor.ResourceTools;
 
-namespace Camellia.Editor
+namespace Camellia.CamelliaEditor
 {
     /// <summary>
     /// 编辑器菜单

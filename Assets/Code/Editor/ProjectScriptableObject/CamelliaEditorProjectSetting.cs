@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEditorInternal;
-namespace Camellia.Editor
+namespace Camellia.CamelliaEditor
 {
     /// <summary>
     /// 项目配置文件

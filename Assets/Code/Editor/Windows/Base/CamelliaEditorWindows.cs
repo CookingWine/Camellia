@@ -5,7 +5,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace Camellia.Editor
+namespace Camellia.CamelliaEditor
 {
     /// <summary>
     /// 编辑器窗口配置

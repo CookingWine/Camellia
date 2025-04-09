@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Camellia.Editor
+namespace Camellia.CamelliaEditor
 {
     /// <summary>
     /// 窗口配置基类

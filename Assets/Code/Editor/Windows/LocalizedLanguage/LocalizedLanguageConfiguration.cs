@@ -5,7 +5,7 @@ using System.IO;
 using LitJson;
 using UnityEngine;
 using UnityEditor;
-namespace Camellia.Editor
+namespace Camellia.CamelliaEditor
 {
     /// <summary>
     /// 本地多语言配置

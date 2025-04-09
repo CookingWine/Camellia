@@ -4,7 +4,7 @@ using GameFramework;
 using System.IO;
 using UnityEngine;
 
-namespace Camellia.Editor
+namespace Camellia.CamelliaEditor
 {
     /// <summary>
     /// GF配置
