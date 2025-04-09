@@ -1,5 +1,5 @@
 {
-    "name": "Camellia.EditorUtility",
+    "name": "Camellia.CamelliaEditor",
     "rootNamespace": "",
     "references": [
         "GUID:d10b4ccbb39ea0541b5566da4d477f8e",

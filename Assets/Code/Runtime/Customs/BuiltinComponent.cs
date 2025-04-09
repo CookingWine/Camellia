@@ -15,7 +15,7 @@ namespace Camellia.Runtime
         public Camera UICamera { get; private set; }
 
         /// <summary>
-        /// 3d相机
+        /// 2d相机
         /// </summary>
         public Camera Camera2D { get; private set; }
 

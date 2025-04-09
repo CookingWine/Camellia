@@ -1461,6 +1461,7 @@ GameObject:
   m_Component:
   - component: {fileID: 897455007}
   - component: {fileID: 897455008}
+  - component: {fileID: 897455009}
   m_Layer: 0
   m_Name: Camellia
   m_TagString: Untagged
@@ -1497,6 +1498,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae73f1985c211a94f8637626c2640ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &897455009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 897455006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a7d0489ffc081444ac1fdb373b3b1ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EnableGizmos: 0
 --- !u!1 &961698924
 GameObject:
   m_ObjectHideFlags: 0
